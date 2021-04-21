@@ -1,0 +1,19 @@
+# git 순서
+
+## 깃 글로벌 세팅
+git config --global user.name "닉네임"
+git config --global user.email "이메일"
+
+> git config --list로 설정값 확인 가능
+
+
+## 디렉토리 설정
+git init				>>> 해당 경로에 .git 파일 생성
+git add .				>>> 로컬에 저장, commit 전에 해야함
+git commit -m "@@"		
+git push				>>> 리파지토리로 보내기
+
+========================
+
+git clone				>>> 지정한 경로에 복제
+git pull				>>> 리파지토리에서 불러오기
