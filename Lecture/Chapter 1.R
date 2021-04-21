@@ -1,3 +1,6 @@
+### 21040
+
+
 #디렉토리
 getwd()
 # a = choose.dir()
@@ -7,7 +10,7 @@ getwd()
 # 패키지
 search()
 # 패키지 설치
-# install.packages()
+  # install.packages()
 ## 패키지 적용
 library(dplyr)
 library(ggplot2)
