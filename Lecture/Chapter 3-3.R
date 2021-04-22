@@ -57,16 +57,25 @@ a1+a3 # 같은 차원이 아니면 안됨
 a1*a3
 a1%*%a3 # 행렬곱 연산은 가능 (수학)
 
-# 배열의 크기/차원 수
+# 배열 함수
+## apply() / 행/열별로 함수 적용
+a3
+apply(a3, 1, mean) # apply(data, margin, func) >> margin = 1:행/2:열
+apply(a3, 2, mean) # 열별로 함수 적용
+
+apply(a3, 1, sum)
+apply(a3, 2, sum)
+
+## 배열의 크기/차원 수
 dim(a3)
 
 d1 = data.frame(hi=c('hi','안녕'),bye=c('bye','잘가'),night=c('good night','잘자')); d1
 dim(d1) # 데이터 프레임에도 됨
 
 l1 = list(c('안녕','hi'),c('bye','잘가'),c('good night','')); l1
-dim(l1) # 리스트는 당연히 안됨
+dim(l1) # 리스트는 당연히 안됨?
 
-# 샘플링
+## 샘플링
 a = array(1:12, c(3,4))
 a
 sample(a)
