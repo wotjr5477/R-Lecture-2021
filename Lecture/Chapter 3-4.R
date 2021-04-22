@@ -71,7 +71,39 @@ head(na.omit(airquality)) # 결측치가 있는 데이터 제외
 
 # 병합(Merge)
 patients
-patients1 = data.frame(name, age)
-patients2 = data.frame(name, gender, blood_type)
+patients1 = data.frame(name, age, gender)
+patients2 = data.frame(name, blood_type)
 merge(patients1, patients2, by = 'name')
 
+# 데이터 프레임에 행 추가
+length(patients1$name)
+patients1[length(patients1$name)+1,] = c('몽룡',19,'M')
+patients1
+
+
+length(patients2$name)
+patients2[length(patients2$name)+1,] = c('영희', 'A')
+patients2
+
+# 데이터 프레임에 열 추가
+patients1['birth_year'] = c(1500,1550,6000,1800)
+patients1
+
+# merge
+## inner join
+merge(patients1, patients2) # 공통인 부분(name)이 있기 때문에 by = @ 를 안써도 됨
+
+## left outer join
+merge(patients1, patients2, all.x=T)
+na.omit(merge(patients1, patients2, all.x=T))
+
+## right outer join
+merge(patients1, patients2, all.y=T)
+na.omit(merge(patients1, patients2, all.y=T))
+
+## (FULL) outher join
+merge(patients1, patients2, all.x=T, all.y=T)
+na.omit(merge(patients1, patients2, all.x=T, all.y=T))
+
+
+# 리스트
