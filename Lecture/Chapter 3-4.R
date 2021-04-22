@@ -74,3 +74,4 @@ patients
 patients1 = data.frame(name, age)
 patients2 = data.frame(name, gender, blood_type)
 merge(patients1, patients2, by = 'name')
+
