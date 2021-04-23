@@ -1,0 +1,74 @@
+---
+title: "Chapter 4, 단원문제"
+author: "Junseok Ban"
+date: '2021 4 23 '
+output: html_document
+---
+#### p.146
+### 01
+#### 1부터 100까지의 수 중에서 3의 배수이면서 4의 배수는 아닌 수의 합을 구하라.
+```{r}
+a = 0
+for(i in seq(3,100,3)) {
+  if(i%%4 != 0) {
+    print(i) #3의 배수이면서 4의 배수는 아닌 수
+    a = a + i;
+  }
+}
+print(paste0("정답은 '",a,"'입니다."))
+```
+
+### 02
+#### x와 n을 입력하면 1부터 n까지의 수 중에서 x의 배수 합을 구해주는 사용자 정의 함수를 만들어라
+```{r}
+xts = function(x, n) {
+  b = 0
+  for(i in 1:n) {
+    if(i%%x == 0) {
+      b = b + i
+    }
+  }
+  print(paste0("1부터 ",n,"까지의 수 중 ",x,"의 배수의 합은 ",b,"입니다"))
+}
+```
+##### 예
+```{r}
+xts(3,10) # 3,6,9 / 합 12
+```
+
+### 03
+#### install.packages("hflights")와 library("hflights") 명령어를 이용하여 hflights 데이터를 활용할 수 있게 하자. hflights 데이터에는 총 몇 개의 NA가 존재하는가?
+```{r}
+install.packages("hflights", repos = "https://cran.us.r-project.org")
+library("hflights")
+sum(is.na(hflights))
+print(paste0("정답은 '",sum(is.na(hflights)),"'개 입니다."))
+```
+
+### 04
+#### hflights 데이터에서 비행시간이 가장 긴 데이터는 몇 시간 몇 분인가?
+```{r}
+?hflights
+str(hflights)
+sum(is.na(hflights$AirTime)) #결측치 확인
+time = max(na.omit(hflights$AirTime)); time # 결측치 제외 후 계산, 549min
+print(paste0(time%%60,"시간 ",time%/%60,"분"))
+```
+
+### 05
+#### hflights 데이터에서 비행거리가 가장 긴 데이터는 몇 마일인가?
+```{r}
+head(hflights$Distance)
+max(hflights$Distance, na.rm = T)
+print(paste0(max(hflights$Distance)," miles"))
+```
+
+### 06
+#### hflights 데이터에서 비행편이 취소된 건수는 몇 건인가?
+```{r}
+head(hflights$Cancelled)
+sum(hflights$Cancelled, na.rm = T) # 취소된 건 = 1 / 취소되지 않은 건 = 0
+print(paste0(sum(hflights$Cancelled),"건"))
+```
+
+
