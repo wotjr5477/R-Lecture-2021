@@ -59,3 +59,11 @@ students['grade'] = ifelse(students$avg > 90, 'A',
                            ifelse(students$avg > 80, 'B',
                                   ifelse(students$avg > 70, 'C', 'D')))
 students
+
+date()
+?as.date
+??as.date
+as.Date()
+dates <- c("02/27/92", "02/27/92", "01/14/92", "02/28/92", "02/01/92")
+dates
+as.Date(dates, "%m/%d/%y")
