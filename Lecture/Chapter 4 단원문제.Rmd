@@ -52,7 +52,7 @@ print(paste0("정답은 '",sum(is.na(hflights)),"'개 입니다."))
 str(hflights)
 sum(is.na(hflights$AirTime)) #결측치 확인
 time = max(na.omit(hflights$AirTime)); time # 결측치 제외 후 계산, 549min
-print(paste0(time%%60,"시간 ",time%/%60,"분"))
+print(paste0(time%/%60,"시간 ",time%%60,"분"))
 ```
 
 ### 05

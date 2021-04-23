@@ -244,7 +244,7 @@ for(i in seq(3,100,3)) {
 <pre><code>## package &#39;hflights&#39; successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-##  C:\Users\CPB06GameN\AppData\Local\Temp\RtmpgZ60ZQ\downloaded_packages</code></pre>
+##  C:\Users\CPB06GameN\AppData\Local\Temp\Rtmp0u98yd\downloaded_packages</code></pre>
 <pre class="r"><code>library(&quot;hflights&quot;)
 sum(is.na(hflights))</code></pre>
 <pre><code>## [1] 25755</code></pre>
@@ -285,7 +285,7 @@ sum(is.na(hflights))</code></pre>
 <pre><code>## [1] 3622</code></pre>
 <pre class="r"><code>time = max(na.omit(hflights$AirTime)); time # 결측치 제외 후 계산, 549min</code></pre>
 <pre><code>## [1] 549</code></pre>
-<pre class="r"><code>print(paste0(time%%60,&quot;시간 &quot;,time%/%60,&quot;분&quot;))</code></pre>
+<pre class="r"><code>print(paste0(time%/%60,&quot;시간 &quot;,time%%60,&quot;분&quot;))</code></pre>
 <pre><code>## [1] &quot;9시간 9분&quot;</code></pre>
 </div>
 </div>

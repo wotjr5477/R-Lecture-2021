@@ -35,7 +35,7 @@ print(paste0("정답은 '",sum(is.na(hflights)),"'개 입니다."))
 str(hflights)
 sum(is.na(hflights$AirTime))
 time = max(na.omit(hflights$AirTime)); time # 549min
-print(paste0(time%%60,"시간 ",time%/%60,"분"))
+print(paste0(time%/%60,"시간 ",time%%60,"분"))
 
 #5
 head(hflights$Distance)
