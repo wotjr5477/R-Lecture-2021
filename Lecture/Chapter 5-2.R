@@ -82,3 +82,19 @@ mpg = mpg %>% mutate(grade2 = ifelse(mpg$total >= 30, "A",ifelse(mpg$total >= 20
 table(mpg$grade2)
 head(mpg)
 mpg$hello = "hello"
+
+
+gapminder %>%
+  filter(continent == "Asia") %>%
+  group_by(country) %>%
+  summarize(life_avg=mean(lifeExp)) %>%
+  arrange(desc(life_avg)) %>%
+  head(5)
+
+# 2007 인구수가 5000만 이상인 국가들 중 기대 수명 Top % 극가
+gapminder %>%
+  filter(year == 2007 & pop >= 5e7) %>%
+  group_by(country) %>%
+  summarize(life_avg=mean(lifeExp)) %>%
+  arrange(desc(life_avg)) %>%
+  head(5)
