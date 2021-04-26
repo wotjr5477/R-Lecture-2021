@@ -51,3 +51,34 @@ summarize(group_by(asia, country), life_avg = mean(lifeExp)) %>%
   arrange(desc(life_avg)) %>%
   head(5)
  
+
+# MPG : Mile per Gallon
+library(ggplot2)
+head(mpg)
+glimpse(mpg)
+summary(mpg)
+
+mpg$total = (mpg$cty+mpg$hwy)/2
+head(mpg)
+mean(mpg$total)
+summary(mpg$total)
+hist(mpg$total)
+
+# 평균연비가 20 이상이면 합격, 아니면 불합격
+mpg$test = ifelse(mpg$total> 20, "PASS","FAIL")
+rm(mpg$teset)
+table(mpg$test)
+qplot(mpg$test)
+
+
+# 평균연비가 30 이상이면 A등급, 20이상이면 B등급, 아니면 C등급
+mpg$grade = ifelse(mpg$total >= 30, "A",ifelse(mpg$total >= 20, "B","C"))
+table(mpg$grade)
+qplot(mpg$grade)
+
+# mutate : 새로운 변수를 추가
+mpg %>% mutate(grade2 = ifelse(mpg$total >= 30, "A",ifelse(mpg$total >= 20, "B","C")))
+mpg = mpg %>% mutate(grade2 = ifelse(mpg$total >= 30, "A",ifelse(mpg$total >= 20, "B","C")))
+table(mpg$grade2)
+head(mpg)
+mpg$hello = "hello"
