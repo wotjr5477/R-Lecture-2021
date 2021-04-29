@@ -5,7 +5,7 @@ library(dplyr)
 library(ggplot2)
 ?mpg
 
-head(mpg)
+head(mpg);str(mpg)
 
 # 1
 mpg %>% filter(displ <= 4) %>% select(model,year, displ,hwy) %>% summarize(mh = mean(hwy)) # 26.0
