@@ -14,3 +14,4 @@ x = seq(58,72, length.out=300)
 y = predict(m2, data.frame(height=x))
 lines(x,y, col="blue", lwd=1)
 summary(m2)
+ 
