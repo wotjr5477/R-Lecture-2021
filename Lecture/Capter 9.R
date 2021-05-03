@@ -1,7 +1,7 @@
 # 21503
 
 # 비율대로 훈련/테스트 데이터 셋 만들기
-train_index = createDatePartition(iris$Species, p=0.8,//)
+train_index = createDatePartition(iris$Species, p=0.8, list=F)
 iris_train = iris[train_index,]
 iris_test = iris[-train_index,]
 table(iris_train$Species)
