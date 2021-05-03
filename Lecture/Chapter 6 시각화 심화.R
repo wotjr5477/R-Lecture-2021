@@ -61,3 +61,7 @@ diamonds %>% group_by(cut) %>% ggplot(aes(cut,price)) + geom_point()
 diamonds %>% group_by(cut) %>% summarize(avg_price=mean(price)) %>% ggplot(aes(cut,avg_price)) + geom_histogram(stat="identity", aes(fill=cut)) + 
   scale_fill_brewer(palette = "Blues")
 ### 3) cut과 color에 따른 가격의 변화를 보여주는 그래프를 작성하세요.
+diamonds %>% select(cut, color)
+str(diamonds$color)
+levels(diamonds$color)
+ 
