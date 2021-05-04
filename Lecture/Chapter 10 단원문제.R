@@ -1,0 +1,64 @@
+# 210504
+
+
+# Chapter 10 단원문제, p.366
+# 1 : colon 데이터 - 랜덤 포트리스, k=5, 10, 15, 20으로 CV, 혼동행렬(confusionMatrix), 정확률
+library(survival)
+clean_colon = na.omit(colon)
+clean_colon = clean_colon[c(T,F), ]
+clean_colon$status = factor(clean_colon$status)
+head(clean_colon)
+str(clean_colon)
+
+k=seq(5,20,5);k
+for (i in k){
+  control =  trainControl(method = "cv", number = i)
+  rf = train(status~., clean_colon, method = "rf", metric = "Accuracy", trControl = control)
+  print(confusionMatrix(rf))
+  print("########################################################")
+}
+
+# 2 : UCLA admission 데이터 -
+ucla = read.csv("https://stats.idre.ucla.edu/stat/data/binary.csv")
+head(ucla)
+str(ucla)
+ucla$admit = factor(ucla$admit)
+
+control = trainControl(method="cv", number = 10)
+u_sl = train(admit~., ucla, method="svmLinear", metric="Accuracy", trControl=control)
+u_slw = train(admit~., ucla, method="svmLinearWeights", metric="Accuracy", trControl=control)
+u_sp = train(admit~., ucla, method="svmPoly", metric="Accuracy", trControl=control)
+u_sr = train(admit~., ucla, method="svmRadial", metric="Accuracy", trControl=control)
+u_srw = train(admit~., ucla, method="svmRadialWeights", metric="Accuracy", trControl=control)
+u_rf100 = train(admit~., ucla, method="rf", ntree=100, metric="Accuracy", trControl=control)
+u_rf300 = train(admit~., ucla, method="rf", ntree=300, metric="Accuracy", trControl=control)
+u_rf500 = train(admit~., ucla, method="rf", ntree=500,  metric="Accuracy", trControl=control)
+u_dt = train(admit~., ucla, method="rpart", metric="Accuracy", trControl=control)
+u_kn = train(admit~., ucla, method="knn", metric="Accuracy", trControl=control)
+u_g = train(admit~., ucla, method="glm", metric="Accuracy", trControl=control)
+u_resamp = resamples(list(선형=u_sl, 선형가중치=u_slw, 다항식=u_sp, RBF=u_sr, 가중치=u_srw, RF100=u_rf100, RF300=u_rf300, RF500=u_rf500, DecisionTree=u_dt, KNN=u_kn, glm=u_g))
+summary(u_resamp)
+sort(u_resamp, decreasing = T)
+dotplot(u_resamp)
+
+# 3 : voice 데이터
+voice = read.csv("data/voice.csv")
+head(voice)
+voice$label = factor(voice$label)
+str(voice)
+
+v_sl = train(label~., voice, method="svmLinear", metric="Accuracy", trControl=control)
+v_slw = train(label~., voice, method="svmLinearWeights", metric="Accuracy", trControl=control)
+v_sp = train(label~., voice, method="svmPoly", metric="Accuracy", trControl=control)
+v_sr = train(label~., voice, method="svmRadial", metric="Accuracy", trControl=control)
+v_srw = train(label~., voice, method="svmRadialWeights", metric="Accuracy", trControl=control)
+v_rf100 = train(label~., voice, method="rf", ntree=100, metric="Accuracy", trControl=control)
+v_rf300 = train(label~., voice, method="rf", ntree=300, metric="Accuracy", trControl=control)
+v_rf500 = train(label~., voice, method="rf", ntree=500,  metric="Accuracy", trControl=control)
+v_dt = train(label~., voice, method="rpart", metric="Accuracy", trControl=control)
+v_kn = train(label~., voice, method="knn", metric="Accuracy", trControl=control)
+v_g = train(label~., voice, method="glm", metric="Accuracy", trControl=control)
+v_resamp = resamples(list(선형=v_sl, 선형가중치=v_slw, 다항식=v_sp, RBF=v_sr, 가중치=v_srw, RF100=v_rf100, RF300=v_rf300, RF500=v_rf500, DecisionTree=v_dt, KNN=v_kn, glm=v_g))
+summary(v_resamp)
+sort(v_resamp, decreasing = T)
+dotplot(v_resamp)
