@@ -62,3 +62,9 @@ v_resamp = resamples(list(선형=v_sl, 선형가중치=v_slw, 다항식=v_sp, RB
 summary(v_resamp)
 sort(v_resamp, decreasing = T)
 dotplot(v_resamp)
+
+install.packages("RSQLite")
+install.packages("https://cran.r-project.org/src/contrib/Archive/KoNLP/KoNLP_0.80.2.tar.gz", repos = NULL, type="source", INSTALL_opts = c("--no-lock"))
+.libPaths()
+library(KoNLP)
+useSejongDic()
