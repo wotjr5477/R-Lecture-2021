@@ -36,7 +36,7 @@ html_text(tds[3])
 for (i in c(1,2,3,22)){
   tr = trs[i]
   tds = html_nodes(tr, "td")
-  spans = html_nodes(tds[3], "span")
+  spans = html_nodes(tds[3], "span"); spans
   last_str = html_text(spans[3])
   
   if (length(spans) ==4) {
