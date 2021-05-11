@@ -82,7 +82,8 @@ for (p in c(1:25)) {
 str(new_books)
 head(new_books)
 
-# 지니차트 일간 / 1~100위, 순위 지난 순위 제목 가수 앨범
+
+# 지니차트 일간(210509) / 1~100위, 순위 지난 순위 제목 가수 앨범
 
 rank_v = c()
 last_v = c()
@@ -106,14 +107,34 @@ for (p in c(1:2)) { # 1: 1~50위/ 2: 51~100위
   trs = table %>%
     html_node("tbody") %>% html_nodes("tr")
   
-  #for (tr in trs) {
+  for (a in c(1,2,3,28)) {
+    tr = trs[2] # 1: 유지/ 2: 상승/ 3: 하강/ 28: new
+    
     # 순위
-    tr= trs[1]
     rank = tr %>% html_node("td.number") %>% html_text()
     rank
     rank = str_split(rank, "\n"); rank
     rank = str_trim(rank[[1]])
-    rank[1]
+    rank = rank[1]
     rank = as.integer(rank); rank
+    
+    rank_v = c(rank_v, rank)
+    
+    # 지난 순위
+    last_stat = tr %>% html_node("span.hide") %>% html_text()
+    last_stat
+    last_stat = str_split(last_stat, "\n"); last_stat
+    last_stat = str_trim(last_stat[[1]])
+    last_stat = last_stat[5]; last_stat
+    
+    last_diff = tr %>% html_no  de("span.rank") %>% html_text(); last_diff
+    if (last_stat == "상승") {
+      
+    }
+    last = as.integer(last); last
+    
   }
+  
 }   
+g_chart = data.frame(rank = rank_v)
+g_chart
