@@ -91,9 +91,10 @@ artist_v = c()
 album_v = c()
 
 for (p in c(1:2)) { # 1: 1~50위/ 2: 51~100위
-  main_url = "https://www.genie.co.kr/chart/top200"
-  sub_url = "?ditc=D&ymd=20210509&hh=17&rtm=N"
-  page_url = paste0(main_url, sub_url, "&pg=", p)
+  #main_url = "https://www.genie.co.kr/chart/top200"
+  #sub_url = "?ditc=D&ymd=20210509&hh=17&rtm=N"
+  #page_url = paste0(main_url, sub_url, "&pg=", p)
+  page_url = "https://www.genie.co.kr/chart/top200?ditc=D&ymd=20210509&hh=17&rtm=N&pg=1"
   html = read_html(page_url)
   html
   
@@ -101,14 +102,18 @@ for (p in c(1:2)) { # 1: 1~50위/ 2: 51~100위
     html_node("div.music-list-wrap") %>%
     html_node("table")
   
+  
   trs = table %>%
     html_node("tbody") %>% html_nodes("tr")
   
-  for (tr in trs) {
+  #for (tr in trs) {
     # 순위
+    tr= trs[1]
     rank = tr %>% html_node("td.number") %>% html_text()
+    rank
+    rank = str_split(rank, "\n"); rank
+    rank = str_trim(rank[[1]])
     rank[1]
-    rank = substr(rank,1,1)
     rank = as.integer(rank); rank
   }
-}
+}   
