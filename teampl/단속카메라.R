@@ -14,7 +14,11 @@ dim(cam_dj)
 head(cam_dj)
 str(cam_dj)
 
-## 동(E) / 서(W) / 중(C) / 대덕(D) / 유성(Y) 
+install.packages("readxl")
+library(readxl)
+read.ex
+
+## 구 : 동(E) / 서(W) / 중(C) / 대덕(D) / 유성(Y) 
 cam_dj_E = cam_dj %>% filter(시군구명 == "동구")
 head(cam_dj_E)
 cam_dj_W = cam_dj %>% filter(시군구명 == "서구")
@@ -35,14 +39,26 @@ ggmap(krMap) + # 지도 그리기
 ## 설치연도
 cam_dj_21 = cam_dj %>% filter(설치연도 == 2021)
 head(cam_dj_21)
+dim(cam_dj_21)
+
+
+cam_dj_200 = cam_dj %>% filter(설치연도 <= 2020)
+
+ggmap(krMap) + # 지도 그리기
+  geom_point(data = cam_dj_200, aes(x=경도,y=위도,colour=시군구명))
+
 cam_dj_20 = cam_dj %>% filter(설치연도 == 2020)
 head(cam_dj_20)
+dim(cam_dj_20)
 cam_dj_19 = cam_dj %>% filter(설치연도 == 2019)
 head(cam_dj_19)
+dim(cam_dj_19)
 cam_dj_18 = cam_dj %>% filter(설치연도 == 2018)
 head(cam_dj_18)
+dim(cam_dj_18)
 cam_dj_17 = cam_dj %>% filter(설치연도 < 2018)
 head(cam_dj_17)
+dim(cam_dj_17)
 
 #ggmap(krMap)+geom_point(data=data.school, aes(x=경도,y=위도, colour=시군구명))
 
