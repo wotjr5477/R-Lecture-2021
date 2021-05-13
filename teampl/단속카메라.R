@@ -13,10 +13,10 @@ cam_dj[1] = as.factor(cam_dj[1])
 dim(cam_dj)
 head(cam_dj)
 str(cam_dj)
+nrow(cam_dj)
 
 install.packages("readxl")
 library(readxl)
-read.ex
 
 ## 구 : 동(E) / 서(W) / 중(C) / 대덕(D) / 유성(Y) 
 cam_dj_E = cam_dj %>% filter(시군구명 == "동구")
