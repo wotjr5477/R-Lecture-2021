@@ -15,8 +15,6 @@ head(cam_dj)
 str(cam_dj)
 nrow(cam_dj)
 
-install.packages("readxl")
-library(readxl)
 
 ## 구 : 동(E) / 서(W) / 중(C) / 대덕(D) / 유성(Y) 
 cam_dj_E = cam_dj %>% filter(시군구명 == "동구")
@@ -31,10 +29,17 @@ cam_dj_Y = cam_dj %>% filter(시군구명 == "유성구")
 head(cam_dj_Y)
 
 ## 시각화
-boxLocation = c(126.75, 36.225, 128.25, 36.485) # 대전 위도 경도 끝값
+boxLocation = c(127.25305, 36.225, 127.51639, 36.485) # 대전 위도 경도 끝값
 djMap = get_map(location=boxLocation) # 해당 위도 경도로 지도 범위 지정
-ggmap(krMap) + # 지도 그리기
+ggmap(djMap) + # 지도 그리기
   geom_point(data = cam_dj, aes(x=경도,y=위도,colour=시군구명))
+
+
+
+boxLocation <- c(127.25305, 36.23972, 127.51639, 36.47306)
+krMap <- get_map(location=boxLocation)
+ggmap(krMap)+geom_point(data=data.school, aes(x=경도,y=위도, colour=구분))
+
 
 ## 설치연도
 cam_dj_21 = cam_dj %>% filter(설치연도 == 2021)
