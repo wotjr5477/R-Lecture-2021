@@ -9,7 +9,7 @@ str(cam)
 ## 대전지역 무인 교통단속 카메라
 cam_dj = cam %>% filter(시도명 == "대전광역시")
 cam_dj = subset(cam_dj, select = c("시군구명","도로종류","소재지도로명주소","설치장소","위도","경도","보호구역구분","설치연도"))
-cam_dj[1] = as.factor(cam_dj[1])
+#cam_dj[1] = as.factor(cam_dj[1])
 dim(cam_dj)
 head(cam_dj)
 str(cam_dj)
