@@ -77,33 +77,3 @@ dim(cam_dj_17)
 
 aa = cam_dj_E %>% filter(설치연도 == 2019) 
 dim(aa)
-
-  #ggmap(krMap)+geom_point(data=data.school, aes(x=경도,y=위도, colour=시군구명))
-
-### 4. 주어진 자료를 이용하여 대전광역시 관내 초중고의 학교 위치를 지도에 나타내시오, 점의 색은 "구분"으로 표시
-data.school <- read.csv("http://youngho.iwinv.net/data/daejeon_school.csv", header=T,
-                        fileEncoding="UTF-8")
-data.school %>% str()
-library(ggmap)
-
-boxLocation <- c(127.25305, 36.23972, 127.51639, 36.47306)
-
-krMap <- get_map(location=boxLocation)
-
-ggmap(krMap)+geom_point(data=data.school, aes(x=경도,y=위도, colour=구분))
-
-### 5. 주어진 대전광역시 행정동 자료(지도)와 병원의 수 자료를 이용하여 그림을 그리시오.
-
-### 대전광역시 행정동 자료
-data.map <- read.csv("http://youngho.iwinv.net/data/daejeon_level3.csv", header=T,
-                     fileEncoding="UTF-8")
-data.map %>% head()
-
-### 대전광역시 병원의 수
-data.hospital <- read.table("http://youngho.iwinv.net/data/daejeon_hospital.txt", header=T,
-                            fileEncoding="UTF-8", sep="\t")
-data.hospital %>% head()
-
-data.hospital = left_join(data.hospital, data.map, by="adm_cd2")
-
-ggplot()+geom_polygon(data=data.hospital, aes(x=long, y=lat, fill=))
