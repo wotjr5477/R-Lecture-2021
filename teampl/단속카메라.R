@@ -19,6 +19,8 @@ nrow(cam_dj)
 ## 구 : 동(E) / 서(W) / 중(C) / 대덕(D) / 유성(Y) 
 cam_dj_E = cam_dj %>% filter(시군구명 == "동구")
 head(cam_dj_E)
+nrow(cam_dj_E)
+dim(cam_dj_E)
 cam_dj_W = cam_dj %>% filter(시군구명 == "서구")
 head(cam_dj_W)
 cam_dj_C = cam_dj %>% filter(시군구명 == "중구")
@@ -52,20 +54,31 @@ cam_dj_200 = cam_dj %>% filter(설치연도 <= 2020)
 ggmap(krMap) + # 지도 그리기
   geom_point(data = cam_dj_200, aes(x=경도,y=위도,colour=시군구명))
 
-cam_dj_20 = cam_dj %>% filter(설치연도 == 2020)
-head(cam_dj_20)
+cam_dj_20 = cam_dj %>% filter(설치연도 <= 2020)
 dim(cam_dj_20)
-cam_dj_19 = cam_dj %>% filter(설치연도 == 2019)
-head(cam_dj_19)
+cam_dj_19 = cam_dj %>% filter(설치연도 <= 2019)
 dim(cam_dj_19)
-cam_dj_18 = cam_dj %>% filter(설치연도 == 2018)
-head(cam_dj_18)
+cam_dj_18 = cam_dj %>% filter(설치연도 <= 2018)
 dim(cam_dj_18)
-cam_dj_17 = cam_dj %>% filter(설치연도 < 2018)
+cam_dj_17 = cam_dj %>% filter(설치연도 <= 2017)
+dim(cam_dj_17)
+cam_dj_16 = cam_dj %>% filter(설치연도 <= 2016)
+dim(cam_dj_16)
+cam_dj_15 = cam_dj %>% filter(설치연도 <= 2015)
+dim(cam_dj_15)
+cam_dj_14 = cam_dj %>% filter(설치연도 < 2015)
+dim(cam_dj_14)
+
 head(cam_dj_17)
 dim(cam_dj_17)
 
-#ggmap(krMap)+geom_point(data=data.school, aes(x=경도,y=위도, colour=시군구명))
+
+
+
+aa = cam_dj_E %>% filter(설치연도 == 2019) 
+dim(aa)
+
+  #ggmap(krMap)+geom_point(data=data.school, aes(x=경도,y=위도, colour=시군구명))
 
 ### 4. 주어진 자료를 이용하여 대전광역시 관내 초중고의 학교 위치를 지도에 나타내시오, 점의 색은 "구분"으로 표시
 data.school <- read.csv("http://youngho.iwinv.net/data/daejeon_school.csv", header=T,

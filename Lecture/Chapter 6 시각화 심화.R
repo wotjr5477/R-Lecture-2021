@@ -10,6 +10,7 @@ library(dplyr)
 head(mpg)
 mpg %>% ggplot(aes(cty,hwy,col=class)) + geom_point()
 
+
 # 2.
 ## 미국 지역별 인구통계 정보를 담은 ggplot2 패키지의 midwest 데이터를 이용해서 전체 인구와 아시아인 인구 간에 어떤 관계가 있는지 알아보려고 합니다. x축은 poptotal(전체 인구), y축은 popasian(아시아인 인구)으로 된 산점도를 만들어 보세요. 전체 인구는 50만 명 이하, 아시아인 인구는 1만 명 이하인 지역만 산점도에 표시되게 설정하세요.
 head(midwest)
