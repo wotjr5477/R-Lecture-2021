@@ -1,21 +1,26 @@
 library(dplyr)
 library(RColorBrewer)
+library(leaflet)
+library(geojsonio)
+
+city <- read.csv('대전자치단체.csv', fileEncoding='utf-8')[-1,]
+city
+
 cam = read.csv("C:/workspace/R/teampl/전국무인교통단속카메라표준데이터.csv")
 cam_dj = cam %>% filter(시도명 == "대전광역시")
 cam_dj = subset(cam_dj, select = c("시군구명","도로종류","소재지도로명주소","설치장소","위도","경도","보호구역구분","설치연도"))
 head(cam_dj)
-cam_dj[2,]
-cam_dj$div = c()
-for (i in 1:nrow(cam_dj)) {
-  if(cam_dj[i,]$시군구명=="동구") {
-    n = "E"} else if(cam_dj[i,]$시군구명=="서구") {
-      n = "W"} else if (cam_dj[i,]$시군구명=="중구") {
-        n = "C"} else if (cam_dj[i,]$시군구명=="대덕구") {
-          n = "D"} else if (cam_dj[i,]$시군구명=="유성구") n="Y"
-  cam_dj$div = c(cam_dj$div, n)
-}
-head(cam_dj)        
-tail(cam_dj)
+
+#cam_dj$div = c()
+#for (i in 1:nrow(cam_dj)) {
+#  if(cam_dj[i,]$시군구명=="동구") {
+#    n = "E"} else if(cam_dj[i,]$시군구명=="서구") {
+#      n = "W"} else if (cam_dj[i,]$시군구명=="중구") {
+#        n = "C"} else if (cam_dj[i,]$시군구명=="대덕구") {
+#          n = "D"} else if (cam_dj[i,]$시군구명=="유성구") n="Y"
+#  cam_dj$div = c(cam_dj$div, n)
+#}
+
 
 # 지도에 카메라 위치 찍기
 leaflet(cam_dj) %>% 
@@ -64,18 +69,7 @@ leaflet(map) %>%
     fillOpacity = 0.5, 
     label = ~gsub("청", "", city$place),
     fillColor = ~pal(pop$n)) %>%
-  addCircles(lng = ~cam_dj$경도, lat = ~cam_dj$위도, color = ~div(cam_dj$시군구명)) 
+  addCircles(lng = ~cam_dj$경도, lat = ~cam_dj$위도, color = ~div(cam_dj$시군구명)) %>%
+  addLegend(pal=pal, values = ~pop$n, opacity = 0.7,
+            title='카메라 수', position='bottomright')
 
-## XXXXX
-leaflet(map) %>% 
-  setView(lng=127.39, lat=36.35, zoom=11) %>% 
-  addProviderTiles('Stamen.TonerLite') %>% 
-  addPolygons(
-    fillColor = ~pal(city$pop),
-    weight = 2, #테두리 굵기
-    opacity = 1, #?
-    color = 'white',
-    dashArray = '3', #테두리 종류?
-    fillOpacity = 0.7, # 채워지는 색 명암
-    label = ~gsub("청", "", city$place)
-  )

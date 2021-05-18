@@ -75,5 +75,6 @@ dim(cam_dj_17)
 
 
 
+
 aa = cam_dj_E %>% filter(설치연도 == 2019) 
 dim(aa)

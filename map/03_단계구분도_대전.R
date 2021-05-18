@@ -28,7 +28,8 @@ leaflet(map) %>%
         color = 'white',
         dashArray = '3',
         fillOpacity = 0.7,
-        label = ~city$place
+        label = ~gsub("청", "", city$place)
+        
     )
 
 # map 데이터와 city 데이터를 통합하면 좋지 않을까

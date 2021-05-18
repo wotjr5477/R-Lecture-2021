@@ -34,36 +34,13 @@ acc = data.frame(acc, year = year_v, month = month_v)
 head(acc)
 tail(acc)
 
-
-
-
-
-e = c()
-for (i in 2015:2019) {
-c = acc %>% filter(year == i) %>% nrow()
-e = c(e, c)
-}
-
 # 연도별 사고 횟수 : 히스토그램
 hist(acc$year, main="연도별 교통사고(사망/중상)", xlab="연도", ylab="사고", ylim = c(0,2500), col = "skyblue")
 
-d = c(2015, 2016, 2017, 2018, 2019)
-f = data.frame(year = d, times = e)
+# 연도별 사고 수(구) : 히스토그램
+acc %>% 
+  ggplot(aes(x=year, fill=loc)) +
+  geom_histogram(position="dodge", colour="black", binwidth = 0.5) +
+  ggtitle("연도별 사고 수(구)") +
+  theme(plot.title = element_text(face = "bold", hjust = 0.5, size = 15))# 연도별 사고 수(구)
 
-acc %>% filter(year==2015) %>% nrow() # 15년도 사고수
-acc %>% filter(year==2016) %>% nrow() # 16년도 사고수
-acc %>% filter(year==2017) %>% nrow() # 17년도 사고수
-acc %>% filter(year==2018) %>% nrow() # 19년도 사고수
-acc %>% filter(year==2019) %>% nrow() # 19년도 사고수
-
-#
-ggplot(f) + geom_line(f, aes(year, times))
-
-ggplot(b,aes(year)) + geom_histogram() + geom_line(f, aes(year, times))
-
-ggplot(f) + geom_bar(aes(year, times))
-+ geom_line()
-
-str(b)
-head(b)
-head(a)
